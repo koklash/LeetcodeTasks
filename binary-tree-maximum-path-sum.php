@@ -15,30 +15,8 @@ class Solution {
     private $highestValue;
 
     function setHighestValue($root){
-        if($root->left==null){
-            //left successor is null
-            if($root->right==null){
-                //left&right successors are null
-                if($this->highestValue<$root->val)
-                    $this->highestValue=$root->val;
-                return $root->val;
-            }else{
-                //only the left successor is null, the right isn't
-                $tmp=$this->setHighestValue($root->right);
-                $newHighestValue=max(array($root->val,$tmp+$root->val));
-                if($newHighestValue>$this->highestValue){
-                    $this->highestValue=$newHighestValue;
-                }
-                return $newHighestValue;
-            }
-        }elseif($root->right==null){
-            //right successor is null, the left isn't
-            $tmp=$this->setHighestValue($root->left);
-            $newHighestValue=max(array($root->val,$tmp+$root->val));
-            if($newHighestValue>$this->highestValue){
-                $this->highestValue=$newHighestValue;
-            }
-            return $newHighestValue;
+        if($root==null) {
+            return 0;
         }else{
             //left&right successors aren't null
             $tmpLeft=$this->setHighestValue($root->left);
