@@ -21,17 +21,8 @@ class Solution {
             //left&right successors aren't null
             $tmpLeft=$this->setHighestValue($root->left);
             $tmpRight=$this->setHighestValue($root->right);
-            $value1=$root->val+$tmpLeft;
-            $value2=$root->val+$tmpRight;
-            $value3=$value1+$tmpRight;
-            $newHighestValue=max([$root->val,$value1, $value2]);
-            if($newHighestValue>$this->highestValue){
-                $this->highestValue=$newHighestValue;
-            }
-            //now we need to check if this node edge is the highest
-            if($value3>$this->highestValue){
-                $this->highestValue=$value3;
-            }
+            $newHighestValue=max([$root->val,$root->val+$tmpLeft,$root->val+$tmpRight]);
+            $this->highestValue=max([$newHighestValue,$this->highestValue,$root->val+$tmpLeft+$tmpRight]);
             return $newHighestValue;
         }
     }
